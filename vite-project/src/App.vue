@@ -1,17 +1,20 @@
 <script>
-import AppMain from './components/AppMain.vue';
+// import AppMain from './components/AppMain.vue';
+import AppHeader from './components/AppHeader.vue';
 
   export default{
     name: 'app',
     components:{
-        AppMain,
+        // AppMain,
+        AppHeader,
     }
 
 };
 </script>
 
 <template>
-    <AppMain/>
+    <!-- <AppMain/> -->
+    <AppHeader/>
 </template>
 
 <style scoped lang="scss">

@@ -1,19 +1,27 @@
 <script>
+import Navbar from './elementiHeader/Navbar.vue'
+import SearchBar from './elementiHeader/SearchBar.vue'
   export default{
     name: 'header',
+      components:{
+        Navbar,
+        SearchBar,
+      }
   }
 </script>
 
 <template>
-   <div>
-        n: {{ i + 1 }} <br>
-        titolo originale:  {{ result.original_title }},<br>
-        titolo :  {{ result.title}}, <br>
-        lingua originale :  {{ result.original_language }}, <br>
-        voto :  {{ result.vote_average }} 
-   </div>
+  <header>
+      <Navbar/>
+      <SearchBar/>
+  </header>
 </template>
 
 <style scoped lang="scss">
-  
+@use '../style/partials/_variables.scss' as *;
+    header{
+      display: flex;
+      justify-content: space-around;
+      background-color: $header-col;
+    }
 </style>

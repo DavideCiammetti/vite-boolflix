@@ -1,5 +1,5 @@
 <script>
-import Cards from './elementiHeader/Cards.vue';
+import Cards from './elementiMain/Cards.vue';
 import axios from 'axios';
 import {store} from '../store';
 

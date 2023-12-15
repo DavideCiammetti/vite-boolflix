@@ -15,7 +15,7 @@
    <div>
         <h3>titolo originale:  {{ originalTitle }}</h3>
         <div>
-            <img :src="'http://image.tmdb.org/t/p/w500/' + img" alt="">
+            <img :src="'http://image.tmdb.org/t/p/w342/' + img" alt="">
         </div>
         <h5> titolo :  {{ title }}</h5>
         <!-- gestione delle bandiere da mostrare su italia e gr -->
