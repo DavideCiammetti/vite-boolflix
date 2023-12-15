@@ -1,13 +1,16 @@
 <script>
   export default{
     name: 'cards',
-        props:['originalTitle', 'title', 'originalLanguage', 'vote'],
+        props:['originalTitle', 'title', 'originalLanguage', 'vote', 'img'],
   }
 </script>
 
 <template>
    <div>
         <h3>titolo originale:  {{ originalTitle }}</h3>
+        <div>
+            <img :src="'http://image.tmdb.org/t/p/w500/' + img" alt="">
+        </div>
         <h5> titolo :  {{ title }}</h5>
         <!-- gestione delle bandiere da mostrare su italia e gr -->
         <p v-if="originalLanguage === 'it'">

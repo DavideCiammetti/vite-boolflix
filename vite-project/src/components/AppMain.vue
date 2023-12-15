@@ -68,6 +68,7 @@ import {store} from '../store';
             <li  v-for="result in this.store.allMovies">
               <h2>movies</h2>
                 <Cards  
+                :img="result.poster_path"
                 :originalTitle="result.original_title"
                 :title="result.title"
                 :originalLanguage="result.original_language"
@@ -82,6 +83,7 @@ import {store} from '../store';
             <li  v-for="result in this.store.allSeries">
               <h2>tv series</h2>
                 <Cards  
+                :img="result.poster_path"
                 :originalTitle="result.original_name"
                 :title="result.name"
                 :originalLanguage="result.original_language"
