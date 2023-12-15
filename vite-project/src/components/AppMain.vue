@@ -17,34 +17,34 @@ import {store} from '../store';
     },
 
     methods:{
-        // funzione per la ricerca del film restituisce tutti i film cercati 
+
+        // funzione per la chiamata api
+        apiCall(apiUrl, typeOfSee, allListToSee){
+
+            axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
+                  typeOfSee = response.data.results;
+                  console.log( typeOfSee);
+
+                  typeOfSee.forEach((element)=>{
+                    allListToSee.push(element);
+                  });
+              });
+        },
+        
+        // funzione chiama api e gestisce film e serie tv 
         newSearch(){
+
+           // movie 
             for(let i = 0; i < 1; i++){
-                
                 this.store.totPage += 1;
-                console.log('sono pagina corrente' + this.store.totPage);
+                this.apiCall(this.store.apiURL, this.store.film,  this.store.allMovies);
+            }
 
-                axios.get( this.store.apiURL + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
-                this.store.film = response.data.results;
-                console.log('sono film', this.store.film );
-
-                this.store.film.forEach((element)=>{
-                    this.store.allMovies.push(element);
-                });
-            });
-          }
           // tv series
+
           for(let i = 0; i < 1; i++){
             this.store.totSeriesPage += 1;
-
-            axios.get( this.store.seriesApiURL + this.store.search + '&page=' + this.store.totSeriesPage ).then((response)=>{
-                this.store.tvSeries = response.data.results;
-                console.log('sono tv', this.store.tvSeries );
-
-                this.store.tvSeries.forEach((element)=>{
-                    this.store.allSeries.push(element);
-                });
-            });
+            this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
         }
         },
         created(){
