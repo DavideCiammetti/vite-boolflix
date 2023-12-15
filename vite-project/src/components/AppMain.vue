@@ -30,22 +30,18 @@ import {store} from '../store';
                   });
               });
         },
-        
+
         // funzione chiama api e gestisce film e serie tv 
         newSearch(){
-
-           // movie 
             for(let i = 0; i < 1; i++){
+              // movie 
                 this.store.totPage += 1;
                 this.apiCall(this.store.apiURL, this.store.film,  this.store.allMovies);
+                
+              // tv series
+                this.store.totSeriesPage += 1;
+                this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
             }
-
-          // tv series
-
-          for(let i = 0; i < 1; i++){
-            this.store.totSeriesPage += 1;
-            this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
-        }
         },
         created(){
 
