@@ -5,7 +5,7 @@ import {store} from '../store';
 
   export default{
     name: 'mian',
-
+    // componenti inclusi in questo file
     components: {
         Cards,
     },
@@ -15,12 +15,16 @@ import {store} from '../store';
             store,
         };
     },
-
+    // ininzio funzioni 
     methods:{
 
-        // funzione per la chiamata api
+        // funzione per la chiamata api 
+        //come usarla
+        // ----> apiUrl = indirizzo url per api
+        //----> typeOfSee = array vuoto da riempire con array tot
+        //----> allListToSee = array vuoto per prendere più pagine 
         apiCall(apiUrl, typeOfSee, allListToSee){
-
+         
             axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
                   typeOfSee = response.data.results;
                   console.log( typeOfSee);
@@ -37,14 +41,14 @@ import {store} from '../store';
               // movie 
                 this.store.totPage += 1;
                 this.apiCall(this.store.apiURL, this.store.film,  this.store.allMovies);
-                
+
               // tv series
                 this.store.totSeriesPage += 1;
                 this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
             }
         },
+        
         created(){
-
             this.newSearch();
         },
     },
@@ -60,6 +64,7 @@ import {store} from '../store';
     </div>
     <div>
         <ul>
+          <!-- lista film -->
             <li  v-for="result in this.store.allMovies">
               <h2>movies</h2>
                 <Cards  
@@ -73,6 +78,7 @@ import {store} from '../store';
     </div>
     <div>
         <ul>
+            <!-- lista serie tv -->
             <li  v-for="result in this.store.allSeries">
               <h2>tv series</h2>
                 <Cards  
