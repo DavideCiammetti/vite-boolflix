@@ -2,7 +2,13 @@
   export default{
     name: 'cards',
         props:['originalTitle', 'title', 'originalLanguage', 'vote', 'img'],
-  }
+
+        methods:{
+            voteTransform(vote){
+                return Math.ceil(vote * 5 / 10);
+            }
+        },      
+  } 
 </script>
 
 <template>
@@ -25,7 +31,11 @@
             lingua originale : {{originalLanguage }}
         </p>
          <!-- gestione delle bandiere da mostrare su italia e gr -->
-        <p>voto :  {{ vote }}</p> 
+        <p>   voto :  {{ voteTransform(vote)}} 
+            <span v-for="n in voteTransform(vote)"> <font-awesome-icon :icon="['fas', 'star']" /></span>
+            <span v-for="i in 5 - voteTransform(vote)"><font-awesome-icon :icon="['far', 'star']" /> </span>
+        </p>
+
    </div>
 </template>
 
