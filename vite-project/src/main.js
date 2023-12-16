@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import '../style/style.scss'
 import App from './App.vue'
 import "@fontsource/fredoka-one";
+import "@fontsource/arsenal"; 
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'

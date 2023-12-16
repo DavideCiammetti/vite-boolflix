@@ -1,18 +1,63 @@
 <script>
+import { store } from '../../store';
+import axios from 'axios';
   export default{
     name: 'searchbar',
+        data(){
+            return{
+                store,
+            };
+        },
+
+        methods:{
+
+// funzione per la chiamata api 
+//come usarla
+// ----> apiUrl = indirizzo url per api
+//----> typeOfSee = array vuoto da riempire con array tot
+//----> allListToSee = array vuoto per prendere più pagine 
+apiCall(apiUrl, typeOfSee, allListToSee){
+ 
+    axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
+          typeOfSee = response.data.results;
+          console.log( typeOfSee);
+
+          typeOfSee.forEach((element)=>{
+            allListToSee.push(element);
+          });
+      });
+},
+
+// funzione chiama api e gestisce film e serie tv 
+newSearch(){
+    for(let i = 0; i < 1; i++){
+      // movie 
+        this.store.totPage += 1;
+        this.apiCall(this.store.apiURL, this.store.film,  this.store.allMovies);
+
+      // tv series
+        this.store.totSeriesPage += 1;
+        this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
+    }
+    this.store.search = '';
+},
+
+created(){
+    this.newSearch();
+    },
+  }
   }
 </script>
 
 <template>
-     <div class="search">
-        <div>
-            <input type="text">
-        </div>
-        <div class="button" @click="newSearch">
-        <button>cerca</button>
-    </div>
-    </div>
+      <div class="search">
+            <div>
+                <input type="text" v-model="this.store.search" >
+            </div>
+            <div class="button" @click="newSearch">
+                <button>cerca</button>
+            </div>
+      </div>
 </template>
 
 <style scoped lang="scss">
