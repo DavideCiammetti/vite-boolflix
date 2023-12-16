@@ -26,7 +26,6 @@ import Cards from './Cards.vue';
                     typeOfSee.forEach((element)=>{
                         allListToSee.push(element);
                     });
-                    console.log(allListToSee);
                 });
             },
 
@@ -39,7 +38,7 @@ import Cards from './Cards.vue';
                     console.log(this.store.pushAllMovies);
 
                 // tv series
-                    this.apiCall(this.store.tvDiscoverUrl, this.store.takeAllmovie, this.store. pushAllTvs);
+                    this.apiCall(this.store.tvDiscoverUrl, this.store.takeAllTvs, this.store.pushAllTvs);
                     console.log(this.store.pushAllmovie);
                 }
             },
@@ -51,15 +50,58 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
-    <ul>
-        <li v-for="movie in this.store.pushAllMovies">
-          film {{  movie.title }}
-        </li>
-        <li v-for="movie in this.store. pushAllTvs">
-          serie tv  {{  movie.original_name }}
-        </li>
-    </ul>
+     <div class="movie-container">
+        <!-- <h2 class="title">Movies and TV series</h2> -->
+          <ul class="list-container">
+            <!-- lista film -->
+              <li  v-for="result in this.store.pushAllMovies" class="list-movie">
+                <h5>movie</h5>
+                  <Cards  
+                  :img="result.poster_path"
+                  :originalTitle="result.original_title"
+                  :title="result.title"
+                  :originalLanguage="result.original_language"
+                  :vote="result.vote_average "
+                  />
+              </li>
+          </ul>
+      </div>
+     <div class="movie-container">
+        <ul class="list-container">
+            <!-- lista serie tv -->
+            <li  v-for="result in this.store.pushAllTvs" class="list-movie">
+              <h5>tv serie</h5>
+                <Cards  
+                :img="result.poster_path"
+                :originalTitle="result.original_name"
+                :title="result.name"
+                :originalLanguage="result.original_language"
+                :vote="result.vote_average "
+                />
+            </li>
+          </ul>
+      </div>
 </template>
 
 <style scoped lang="scss">
+ .title{
+      font-size: 37px;
+      margin: 30px 0;
+      color: white;
+    }
+    h5{
+      color: white;
+    }
+.movie-container{
+  .list-container{
+      display: flex;
+      flex-wrap: wrap;
+        .list-movie{
+          width: calc(100% / 5);
+          list-style: none;
+          position: relative;
+        }
+    }
+
+}
 </style>
