@@ -22,3 +22,23 @@ original_language
 original_title
 vote_average
 title
+
+
+-------------------------------------------------------------------------------------------------------------------------------------->
+### FUNZIONE PER GENERARE CHIAMATE AXIOS FUNZIONAMENTO
+            // funzione per la chiamata api 
+            //come usarla
+            // ----> apiUrl = indirizzo url per api
+            //----> typeOfSee = array vuoto da riempire con array tot
+            //----> allListToSee = array vuoto per prendere più pagine 
+            apiCall(apiUrl, typeOfSee, allListToSee){
+            
+                axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
+                    typeOfSee = response.data.results;
+                    console.log( typeOfSee);
+
+                    typeOfSee.forEach((element)=>{
+                        allListToSee.push(element);
+                    });
+                });
+            },

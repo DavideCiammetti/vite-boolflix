@@ -82,9 +82,9 @@
                 display: block;
                 border-radius: 15px;
                 height: 100%;
+                box-shadow: 10px 10px 7px black;
             }
         }
-
 }
     p img{
         vertical-align: middle;

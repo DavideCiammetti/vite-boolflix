@@ -1,13 +1,14 @@
 <script>
 import Cards from './elementiMain/Cards.vue';
-import axios from 'axios';
 import {store} from '../store';
+import AllMoviesCard from './elementiMain/AllMoviesCard.vue';
 
   export default{
     name: 'mian',
     // componenti inclusi in questo file
     components: {
         Cards,
+        AllMoviesCard,
     },
 
     data(){
@@ -20,10 +21,15 @@ import {store} from '../store';
 
 <template>
       <main>
-      <div>
+
+        <AllMoviesCard/>
+
+      <div class="movie-container">
+        <!-- <h2 class="title">Movies and TV series</h2> -->
           <ul class="list-container">
             <!-- lista film -->
               <li  v-for="result in this.store.allMovies" class="list-movie">
+                <h5>movie</h5>
                   <Cards  
                   :img="result.poster_path"
                   :originalTitle="result.original_title"
@@ -34,19 +40,19 @@ import {store} from '../store';
               </li>
           </ul>
       </div>
-      <div>
-          <ul class="list-container">
-              <!-- lista serie tv -->
-              <li  v-for="result in this.store.allSeries" class="list-movie">
-                <!-- <h2>tv series</h2> -->
-                  <Cards  
-                  :img="result.poster_path"
-                  :originalTitle="result.original_name"
-                  :title="result.name"
-                  :originalLanguage="result.original_language"
-                  :vote="result.vote_average "
-                  />
-              </li>
+     <div class="movie-container">
+        <ul class="list-container">
+            <!-- lista serie tv -->
+            <li  v-for="result in this.store.allSeries" class="list-movie">
+              <h5>tv serie</h5>
+                <Cards  
+                :img="result.poster_path"
+                :originalTitle="result.original_name"
+                :title="result.name"
+                :originalLanguage="result.original_language"
+                :vote="result.vote_average "
+                />
+            </li>
           </ul>
       </div>
       </main>
@@ -57,8 +63,18 @@ import {store} from '../store';
 main{
   padding-top: 90px;
   height: 100%;
+  text-align: center;
+    .title{
+      font-size: 37px;
+      margin: 30px 0;
+      color: white;
+    }
+    h5{
+      color: white;
+    }
 }
-    .list-container{
+.movie-container{
+  .list-container{
       display: flex;
       flex-wrap: wrap;
         .list-movie{
@@ -67,4 +83,6 @@ main{
           position: relative;
         }
     }
+
+}
 </style>
