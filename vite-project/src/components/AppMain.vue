@@ -24,7 +24,7 @@ import AllMoviesCard from './elementiMain/AllMoviesCard.vue';
 
         <AllMoviesCard/>
 
-      <div class="movie-container">
+      <div v-show=" !this.store.seeSearchResult" class="movie-container">
         <!-- <h2 class="title">Movies and TV series</h2> -->
           <ul class="list-container">
             <!-- lista film -->
@@ -80,4 +80,5 @@ main{
     }
 
 }
+
 </style>

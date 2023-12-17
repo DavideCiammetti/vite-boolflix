@@ -22,6 +22,10 @@ import axios from 'axios';
                         allListToSee.push(element);
                     });
                 });
+                // evita che l'invio della ricerca siano spazi vuoti 
+                if( this.store.search.trim() !== '' ){
+                    this.store.seeSearchResult = false;
+                }
             },
 
             // funzione chiama api e gestisce film e serie tv 
