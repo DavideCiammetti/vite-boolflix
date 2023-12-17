@@ -18,7 +18,10 @@ import SocialList from './elementiFooter/SocialList.vue';
 </template>
 
 <style scoped lang="scss">
+@use '../style/partials/_variables.scss' as *;
     footer{
-      background-color: aqua;
+      background-color:$header-col;
+      display: flex;
+      justify-content: space-around;
     }
 </style>
