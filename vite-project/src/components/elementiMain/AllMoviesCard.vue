@@ -16,7 +16,6 @@ import Cards from './Cards.vue';
         },
 
         methods:{
-            
             apiCall(apiUrl, typeOfSee, allListToSee){
             
                 axios.get( apiUrl + '&page=' + this.store.totalPage ).then((response)=>{
@@ -39,7 +38,7 @@ import Cards from './Cards.vue';
 
                 // tv series
                     this.apiCall(this.store.tvDiscoverUrl, this.store.takeAllTvs, this.store.pushAllTvs);
-                    console.log(this.store.pushAllmovie);
+                    console.log(this.store.pushAllMovies);
                 }
             },
     },
@@ -50,37 +49,37 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
-     <div v-show="this.store.seeSearchResult" class="movie-container">
-        <!-- <h2 class="title">Movies and TV series</h2> -->
-          <ul class="list-container">
-            <!-- lista film -->
-              <li  v-for="result in this.store.pushAllMovies" class="list-movie">
-                <h5>movie</h5>
-                  <Cards  
-                  :img="result.poster_path"
-                  :originalTitle="result.original_title"
-                  :title="result.title"
-                  :originalLanguage="result.original_language"
-                  :vote="result.vote_average "
-                  />
-              </li>
-          </ul>
-      </div>
-      <div v-show="this.store.seeSearchResult" class="movie-container">
+    <div v-show="this.store.seeSearchResult" class="movie-container">
+      <!-- <h2 class="title">Movies and TV series</h2> -->
         <ul class="list-container">
-            <!-- lista serie tv -->
-            <li v-for="result in this.store.pushAllTvs" class="list-movie">
-              <h5>tv serie</h5>
-              <Cards  
+          <!-- lista film -->
+            <li  v-for="result in this.store.pushAllMovies" class="list-movie">
+              <h5>movie</h5>
+                <Cards  
                 :img="result.poster_path"
-                :originalTitle="result.original_name"
-                :title="result.name"
+                :originalTitle="result.original_title"
+                :title="result.title"
                 :originalLanguage="result.original_language"
                 :vote="result.vote_average "
                 />
             </li>
-          </ul>
-      </div>
+        </ul>
+    </div>
+    <div v-show="this.store.seeSearchResult" class="movie-container">
+      <ul class="list-container">
+        <!-- lista serie tv -->
+        <li v-for="result in this.store.pushAllTvs" class="list-movie">
+          <h5>tv serie</h5>
+          <Cards  
+            :img="result.poster_path"
+            :originalTitle="result.original_name"
+            :title="result.name"
+            :originalLanguage="result.original_language"
+            :vote="result.vote_average "
+            />
+        </li>
+      </ul>
+    </div>
 </template>
 
 <style scoped lang="scss">

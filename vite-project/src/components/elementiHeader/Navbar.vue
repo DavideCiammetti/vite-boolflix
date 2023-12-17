@@ -11,10 +11,7 @@ import Logo from './Logo.vue';
 <template>
     <div class="menu-container">
         <Logo/>
-        <!-- <div class="container-hamburger-menu">
-            <font-awesome-icon :icon="['fas', 'bars']" class="hamburger-menu"/>
-        </div> -->
-            <nav class="navbar">
+        <nav class="navbar">
             <ul class="menu">
                 <li class="list">
                     <a href="#">Home</a>
@@ -30,7 +27,7 @@ import Logo from './Logo.vue';
                 </li>
             </ul>
         </nav>
-        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">

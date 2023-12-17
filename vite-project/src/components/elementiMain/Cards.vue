@@ -13,26 +13,35 @@
 
 <template>
     <div class="image-container">
+        <!-- immagini -->
         <div class="movie-image">
             <img :src="'http://image.tmdb.org/t/p/w342/' + img" alt="">
         </div>
+        <!-- immagini -->
         <div class="card-container">
             <div class="movie-info">
-                <h3>titolo originale:  {{ originalTitle }}</h3>
-                <h5> titolo :  {{ title }}</h5>
+                <h3>Titolo Originale:  {{ originalTitle }}</h3>
+                <h5> Titolo :  {{ title }}</h5>
+
                 <!-- gestione delle bandiere da mostrare su italia e gr -->
+
+                 <!-- se italiano -->
                 <p v-if="originalLanguage === 'it'">
-                    lingua originale : {{originalLanguage }} 
+                    Lingua Originale : {{originalLanguage }} 
                     <img src="../../assets/img/flag-img/icons8-italy-48.png" alt="ita.img"> 
                 </p>
+                <!-- se inglese -->
                 <p v-else-if="originalLanguage === 'en'">
-                    lingua originale :  {{originalLanguage }} 
+                    Lingua Originale :  {{originalLanguage }} 
                     <img src="../../assets/img/flag-img/icons8-circolare-della-gran-bretagna-48.png" alt="gr.img"> 
                 </p>
+                 <!-- se non inglese e non italiano -->
                 <p v-else>
-                    lingua originale : {{originalLanguage }}
+                    Lingua Originale : {{originalLanguage }}
                 </p>
                 <!-- gestione delle bandiere da mostrare su italia e gr -->
+
+                <!-- gestione del voto e delle stelle  -->
                 <p>   voto :  {{ voteTransform(vote)}} 
                     <span v-for="n in voteTransform(vote)" class="yellow-star"> <font-awesome-icon :icon="['fas', 'star']" /></span>
                     <span v-for="i in 5 - voteTransform(vote)" ><font-awesome-icon :icon="['far', 'star']" /> </span>
