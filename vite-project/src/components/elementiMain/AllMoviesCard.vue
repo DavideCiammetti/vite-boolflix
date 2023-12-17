@@ -50,7 +50,7 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
-     <div class="movie-container">
+     <div v-show="this.store.seeSearchResult" class="movie-container">
         <!-- <h2 class="title">Movies and TV series</h2> -->
           <ul class="list-container">
             <!-- lista film -->
@@ -66,12 +66,12 @@ import Cards from './Cards.vue';
               </li>
           </ul>
       </div>
-     <div class="movie-container">
+      <div v-show="this.store.seeSearchResult" class="movie-container">
         <ul class="list-container">
             <!-- lista serie tv -->
-            <li  v-for="result in this.store.pushAllTvs" class="list-movie">
+            <li v-for="result in this.store.pushAllTvs" class="list-movie">
               <h5>tv serie</h5>
-                <Cards  
+              <Cards  
                 :img="result.poster_path"
                 :originalTitle="result.original_name"
                 :title="result.name"
@@ -84,11 +84,7 @@ import Cards from './Cards.vue';
 </template>
 
 <style scoped lang="scss">
- .title{
-      font-size: 37px;
-      margin: 30px 0;
-      color: white;
-    }
+
     h5{
       color: white;
     }

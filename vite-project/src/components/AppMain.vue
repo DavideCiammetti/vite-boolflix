@@ -64,11 +64,6 @@ main{
   padding-top: 90px;
   height: 100%;
   text-align: center;
-    .title{
-      font-size: 37px;
-      margin: 30px 0;
-      color: white;
-    }
     h5{
       color: white;
     }

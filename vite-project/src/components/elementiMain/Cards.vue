@@ -46,6 +46,7 @@
 .card-container{
     text-align: center;
     height: 100%;
+    width: 97%;
     position: absolute;
 
         p, h3, h5{
@@ -63,11 +64,10 @@
     bottom: 93%;
     height: 93%;
     z-index: 1;
-    left: 18px;
+    left: 2%;
     border-radius: 15px;
-    width: 216px;
+    width: 90%;
     margin: 0 auto;
-
 }
 .image-container{
     height: 93%;
