@@ -25,7 +25,7 @@ import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
 
 main{
   padding-top: 90px;
-  height: 100%;
+  padding-bottom: 45px;
   text-align: center;
     h5{
       color: white;

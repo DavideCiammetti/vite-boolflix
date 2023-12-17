@@ -62,7 +62,6 @@ import Cards from './Cards.vue';
         .list-movie{
           width: calc(100% / 5);
           list-style: none;
-          position: relative;
         }
     }
 
