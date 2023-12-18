@@ -12,7 +12,9 @@
 
 <style scoped lang="scss">
 @use '../style/partials/_variables.scss' as *;
+@use '../style/partials/_responsive.scss' as *;
 .logo {
+  display: none;
     width: 70px;
     margin: 5px;
     margin-left: 13px;

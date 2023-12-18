@@ -4,26 +4,39 @@ import Logo from './Logo.vue';
     name: 'navbar',
     components:{
             Logo,
-        } 
+        }, 
+        data(){
+            return{
+                navShow: false,
+            }
+        },
+      methods:{
+        clickMenu(){
+            return this.navShow = !this.navShow;
+        }
+      },
   }
 </script>
 
 <template>
-    <div class="menu-container">
-        <Logo/>
+    <div class="menu-icon">
+        <font-awesome-icon :icon="['fas', 'bars']"  class="ico-burger-menu" @click="clickMenu"/>
+    </div>
+    <Logo/>
+    <div  :class="navShow === true? 'd-block':'' " class="menu-container">
         <nav class="navbar">
             <ul class="menu">
                 <li class="list">
                     <a href="#">Home</a>
                 </li>
                 <li class="list">
-                    <a href="#">Serie tv</a>
+                    <a href="#">Tv Series</a>
                 </li>
                 <li class="list">
-                    <a href="#">Film</a>
+                    <a href="#">Movies</a>
                 </li>
                 <li class="list">
-                    <a href="#">La mia lista</a>
+                    <a href="#">My list</a>
                 </li>
             </ul>
         </nav>
@@ -32,33 +45,60 @@ import Logo from './Logo.vue';
 
 <style scoped lang="scss">
 @use '../style/partials/_variables.scss' as *;
+@use '../style/partials/_responsive.scss' as *;
 .menu-container{
-    display: flex;
     margin-right: auto;
-    .navbar{
-        margin-left: 60px;
-        line-height: 2.7;
-        .menu{
-        display: flex;
-        list-style: none;
+    display: none;
+}
+.menu{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
         .list{
-            margin-right: 30px;
-            font-size: 25px;
+            margin-right: 1.875rem;
                 a{
                     text-decoration: none;
                     color: $nav-col;
                 }
         }
 }
+    .d-block{
+        display: block;
     }
-}
-// parte di mobile first 
+// hamburger menu
 
-.container-hamburger-menu{
-    padding: 15px;
-    .hamburger-menu{
-            color: $nav-col;
-            font-size: 20px;
+.menu-icon{
+    margin: 1.25rem;
+    .ico-burger-menu{
+        font-size: 1.25rem;
+        color: $nav-col;
         }
+}
+
+// responsivity
+@media screen and (min-width: 992px){
+    .menu{
+        flex-wrap: nowrap;
+    }
+    a{
+        font-size: 20px;
+    }
+   .menu-container{
+       display: flex;
+      }
+      .navbar{
+        margin-left: 3.75rem;
+        line-height: 2.7;
+      }
+      .menu-icon{
+         display: none;
+      }
+   }
+
+//click sul menu hambuerger
+.menu-icon:hover .menu-container{
+       display: flex;
+       line-height: 0;
+       font-size: 12px;
 }
 </style>

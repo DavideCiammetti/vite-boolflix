@@ -39,23 +39,35 @@
 .social-container-list{
     display: flex;
     align-items: center;
+    margin-right: 70px;
     ul{
         list-style: none;
         display: flex;
+        flex-wrap: wrap;
         .social-list a{
                 text-decoration: none;
                 color: #a7a7a7;;
             }
-            .social-list{
-                padding-right: 15px;
-                    a{
-                        text-decoration: none;
-                    }
-                    .ico-size{
-                        font-size: 27px;
-                    }
-            }
-
     }
 }
+
+.social-list{
+    margin: 15px 0;
+    padding-right: 15px;
+        a{
+            text-decoration: none;
+        }
+        .ico-size{
+            font-size: 27px;
+        }
+}
+// responisvity
+@media screen and (min-width: 768px){
+    ul{
+        flex-wrap: nowrap;
+   }
+ }
+ .social-container-list{
+    margin-right: 0;
+ }
 </style>

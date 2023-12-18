@@ -20,36 +20,40 @@ import Cards from './Cards.vue';
             
                 axios.get( apiUrl + '&page=' + this.store.totalPage ).then((response)=>{
                     typeOfSee = response.data.results;
-                    console.log( typeOfSee);
+                    console.log('sono tuuutti film e serie');
+                    console.log(typeOfSee);
 
                     typeOfSee.forEach((element)=>{
                         allListToSee.push(element);
                     });
                 });
+
             },
 
             // funzione chiama api e gestisce film e serie tv 
             showAllMovies(){
                 for(let i = 0; i < 1; i++){
+                  this.store.pushAllMovies = [];
+                  this.store.pushAllTvs = [];
                     this.store.totalPage += 1;
                 // movie 
-                    this.apiCall(this.store.movieDiscoverUrl, this.store.takeAllMovies,  this.store.pushAllMovies);
-                    console.log(this.store.pushAllMovies);
+                    this.apiCall(store.movieDiscoverUrl, store.takeAllMovies, store.pushAllMovies);
+                    console.log(store.pushAllMovies);
 
                 // tv series
-                    this.apiCall(this.store.tvDiscoverUrl, this.store.takeAllTvs, this.store.pushAllTvs);
+                    this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
                     console.log(this.store.pushAllMovies);
-                }
+                }  
             },
     },
     created(){
-            this.showAllMovies();
-        },
+      this.showAllMovies();
+    },
 };
 </script>
 
 <template>
-    <div v-show="this.store.seeSearchResult" class="movie-container">
+    <div v-show="store.seeSearchResult" class="movie-container">
       <!-- <h2 class="title">Movies and TV series</h2> -->
         <ul class="list-container">
           <!-- lista film -->
@@ -65,7 +69,7 @@ import Cards from './Cards.vue';
             </li>
         </ul>
     </div>
-    <div v-show="this.store.seeSearchResult" class="movie-container">
+    <div v-show="store.seeSearchResult" class="movie-container">
       <ul class="list-container">
         <!-- lista serie tv -->
         <li v-for="result in this.store.pushAllTvs" class="list-movie">
@@ -83,20 +87,41 @@ import Cards from './Cards.vue';
 </template>
 
 <style scoped lang="scss">
+@use '../style/partials/_responsive.scss' as *;
 
     h5{
       color: white;
+      font-size: 33px;
     }
 .movie-container{
   .list-container{
       display: flex;
       flex-wrap: wrap;
-        .list-movie{
-          width: calc(100% / 5);
+    }
+}
+.list-movie{
+          width: 100%;
           list-style: none;
           position: relative;
         }
-    }
 
-}
+  @media screen and (min-width: 578px){
+   .list-movie{
+     width: calc(100% / 2);
+   }
+   h5{
+    font-size: 14px;
+   }
+ }
+  @media screen and (min-width: 768px){
+   .list-movie{
+     width: calc(100% / 3);
+   }
+ }
+
+@media screen and (min-width: 992px){
+   .list-movie{
+     width: calc(100% / 5);
+   }
+ }
 </style>

@@ -3,7 +3,6 @@ import { store } from '../../store';
 
   export default{
     name: 'searchbar',
-
         data(){
             return{
                 store,
@@ -14,12 +13,14 @@ import { store } from '../../store';
 
 <template>
       <div class="search">
-            <div>
-                <input type="text" v-model="this.store.search" >
-            </div>
-            <div class="button" @click="$emit('searchMovie')">
-                <button>cerca</button>
-            </div>
+           <div class="search-content">
+                <div>
+                    <input type="text" v-model="this.store.search" >
+                </div>
+                <div class="button" @click="$emit('searchMovie')">
+                    <button>Search</button>
+                </div>
+           </div>
       </div>
 </template>
 
@@ -27,8 +28,13 @@ import { store } from '../../store';
 @use '../style/partials/_variables.scss' as *;
     .search{
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         margin-right: 10%;
+        position: relative;
+        .search-content{
+            display: flex;
+        }
         input,
         button{
             border: none;

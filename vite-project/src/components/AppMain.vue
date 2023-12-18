@@ -1,6 +1,7 @@
 <script>
 import AllMoviesCard from './elementiMain/AllMoviesCard.vue';
 import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
+import {store} from '../store';
 
   export default{
     name: 'mian',
@@ -9,6 +10,16 @@ import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
         AllMoviesCard,
         ListMovieTvSeries,
     },
+    data(){
+        return{
+            store,
+        };
+      },
+      methods:{
+        notFound(){
+          return this.store.boolNotFound;
+        }
+      }
 };
 </script>
 
@@ -24,7 +35,7 @@ import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
 <style scoped lang="scss">
 
 main{
-  padding-top: 90px;
+  padding-top: 13%;
   padding-bottom: 45px;
   text-align: center;
     h5{

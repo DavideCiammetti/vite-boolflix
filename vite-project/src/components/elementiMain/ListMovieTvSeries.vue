@@ -17,7 +17,7 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
-    <div v-show=" !this.store.seeSearchResult" class="movie-container">
+    <div v-show="store.seeSearchResult" class="movie-container">
       <!-- <h2 class="title">Movies and TV series</h2> -->
         <ul class="list-container">
           <!-- lista film -->
@@ -33,7 +33,7 @@ import Cards from './Cards.vue';
             </li>
         </ul>
     </div>
-      <div class="movie-container" v-show=" !this.store.seeSearchResult" >
+      <div class="movie-container" v-show="store.seeSearchResult" >
           <ul class="list-container">
               <!-- lista serie tv -->
               <li  v-for="result in this.store.allSeries" class="list-movie">
@@ -51,19 +51,52 @@ import Cards from './Cards.vue';
 </template>
 
 <style scoped lang="scss">
-
-.movie-container{
-    h5{
+@use '../style/partials/_responsive.scss' as *;
+h5{
       color: white;
+      font-size: 33px;
     }
+.movie-container{
   .list-container{
       display: flex;
       flex-wrap: wrap;
-        .list-movie{
-          width: calc(100% / 5);
-          list-style: none;
-        }
     }
-
 }
+.list-movie{
+          width: 100%;
+          list-style: none;
+          position: relative;
+        }
+
+.movie-container{
+  .list-container{
+      display: flex;
+      flex-wrap: wrap;
+    }
+}
+.list-movie{
+          width: 100%;
+          list-style: none;
+          position: relative;
+        }
+// responsivity
+  @media screen and (min-width: 578px){
+   .list-movie{
+     width: calc(100% / 2);
+   }
+   h5{
+    font-size: 14px;
+   }
+ }
+  @media screen and (min-width: 768px){
+   .list-movie{
+     width: calc(100% / 3);
+   }
+ }
+
+@media screen and (min-width: 992px){
+   .list-movie{
+     width: calc(100% / 5);
+   }
+ }
 </style>

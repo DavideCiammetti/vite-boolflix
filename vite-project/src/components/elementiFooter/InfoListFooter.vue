@@ -72,6 +72,7 @@
 @use '../style/partials/_variables.scss' as *;
     .info-list-container{
         display: flex;
+        flex-wrap: wrap;
         margin-left: 40px;
             .list-container{
                 margin: 0 35px;
@@ -98,4 +99,9 @@
                     }
             }
     }
+    @media screen and (min-width: 768px){
+    .info-list-container{
+        flex-wrap: nowrap;
+   }
+ }
 </style>
