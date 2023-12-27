@@ -17,7 +17,7 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
-    <div v-show="store.seeSearchResult" class="movie-container">
+    <div v-show="!this.store.seeSearchResult" class="movie-container">
       <!-- <h2 class="title">Movies and TV series</h2> -->
         <ul class="list-container">
           <!-- lista film -->
@@ -33,7 +33,7 @@ import Cards from './Cards.vue';
             </li>
         </ul>
     </div>
-      <div class="movie-container" v-show="store.seeSearchResult" >
+      <div class="movie-container" v-show="!this.store.seeSearchResult" >
           <ul class="list-container">
               <!-- lista serie tv -->
               <li  v-for="result in this.store.allSeries" class="list-movie">

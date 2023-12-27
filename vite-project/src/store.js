@@ -10,7 +10,7 @@ export const store = reactive({
     search: '',
     totPage: 0,
     //solo serie tv
-     seriesApiURL: 'https://api.themoviedb.org/3/search/tv?api_key=ce2602a149b34cf456d6b3a97519bed3&query=',
+    seriesApiURL: 'https://api.themoviedb.org/3/search/tv?api_key=ce2602a149b34cf456d6b3a97519bed3&query=',
     tvSeries: [],
     allSeries: [],
     // tutti i film
@@ -24,4 +24,9 @@ export const store = reactive({
     pushAllTvs: [],
     // validatore globale per ricerca film e serie tv
     seeSearchResult: true,
+    // categorie film
+    categoriesApi: 'https://api.themoviedb.org/3/genre/movie/list?api_key=ce2602a149b34cf456d6b3a97519bed3',
+    categories: [],
+    // validatore per la ricerca in caso fosse vuota 
+    searchVal: 0,
 });

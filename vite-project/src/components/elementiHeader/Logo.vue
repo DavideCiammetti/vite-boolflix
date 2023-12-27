@@ -6,7 +6,7 @@
 
 <template>
     <div class="logo">
-        <img src="../../assets/logo.img/681e747fe6634ffa824d726f3a9942a0.png" alt="">
+        <img src="../../../public/logo.img/681e747fe6634ffa824d726f3a9942a0.png" alt="">
     </div>
 </template>
 

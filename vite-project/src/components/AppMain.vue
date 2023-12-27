@@ -1,7 +1,7 @@
 <script>
 import AllMoviesCard from './elementiMain/AllMoviesCard.vue';
 import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
-import {store} from '../store';
+import Selectcategories from './elementiMain/Selectcategories.vue';
 
   export default{
     name: 'mian',
@@ -9,22 +9,14 @@ import {store} from '../store';
     components: {
         AllMoviesCard,
         ListMovieTvSeries,
+        Selectcategories,
     },
-    data(){
-        return{
-            store,
-        };
-      },
-      methods:{
-        notFound(){
-          return this.store.boolNotFound;
-        }
-      }
 };
 </script>
 
 <template>
       <main>
+        <Selectcategories/>
         <!-- ritorna tutti i film e serie tv senza filtri -->
         <AllMoviesCard/>
           <!-- ritorna tutti i film e serie tv filtrati in base alla ricerca -->
@@ -35,7 +27,7 @@ import {store} from '../store';
 <style scoped lang="scss">
 
 main{
-  padding-top: 13%;
+  padding-top: 8%;
   padding-bottom: 45px;
   text-align: center;
     h5{

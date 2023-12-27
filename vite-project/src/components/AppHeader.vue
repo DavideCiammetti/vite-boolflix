@@ -2,6 +2,7 @@
 import Navbar from './elementiHeader/Navbar.vue'
 import axios from 'axios';
 import SearchBar from './elementiHeader/SearchBar.vue'
+import SearchNotFoundAlert from './elementiMain/SearchNotFoundAlert.vue';
 import {store} from '../store';
 
   export default{
@@ -9,21 +10,20 @@ import {store} from '../store';
       components:{
         Navbar,
         SearchBar,
+        SearchNotFoundAlert,
       },
 
       data(){
         return{
-            store,
+          store,
         };
       },
 
       methods:{
 
         apiCall(apiUrl, typeOfSee, allListToSee){
-
-          store.seeAlert = false;
-          console.log('sono false');
-            axios.get( apiUrl + store.search + '&page=' + store.totPage ).then((response)=>{
+          
+            axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
                 typeOfSee = response.data.results;
                 console.log('sono film e serie');
                 console.log( typeOfSee);
@@ -31,8 +31,6 @@ import {store} from '../store';
                 typeOfSee.forEach((element)=>{
                     allListToSee.push(element);
                 });
-                store.seeAlert === true;
-                console.log('sono true');
             });
         },
        
@@ -40,38 +38,53 @@ import {store} from '../store';
         newSearch(){
             for(let i = 0; i < 1; i++){
 
-              store.allMovies = [];
-              store.allSeries = [];
-              store.pushAllMovies = [];
-              store.pushAllTvs = [];
+              this.store.allMovies = [];
+              this.store.allSeries = [];
+              this.store.pushAllMovies = [];
+              this.store.pushAllTvs = [];
 
-              store.totPage += 1;
+              this.store.totPage += 1;
             // movie 
-                this.apiCall(store.apiURL, store.film, store.allMovies);
+                this.apiCall(this.store.apiURL, this.store.film, this.store.allMovies);
 
             // tv series
-                this.apiCall(store.seriesApiURL, store.tvSeries, store.allSeries);
-
+                this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
             }
-            store.search = '';
-            
-            if( store.seeAlert === false){
+
+            // uso questa candizione per controllare la ricerca e i risultati
+            // nel caso in cui non si inserisce la ricerca svuota gli array di film e serie 
+            //  e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
+            // una ricerca senzata 
+            if( this.store.search.trim().length === 0){
+                this.store.search = '';
+
+                this.store.allMovies = [];
+                this.store.allSeries = [];
+                // array di tutti i film e serie tv
                 this.apiCall(store.movieDiscoverUrl, store.takeAllMovies, store.pushAllMovies);
                 this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
-                store.seeAlert === true;
-            }
+                console.log('= 0');
+                
+                this.store.searchVal += 1;
+                // questo this.store.seeSearchResult si trova in listMovieTvSeries e allMoviesCard
+                // per gestire la visualizzazione 
+                return this.store.seeSearchResult = true;
 
+                }else if(this.store.search.trim().length > 0){
+                  this.store.search = '';
 
+                  this.store.pushAllMovies = [];
+                  this.store.pushAllTvs = [];
+                  console.log('+ 0');
+                  this.store.searchVal += 1;
+
+                  return this.store.seeSearchResult = false;
+                }
         },
-
-        showAllMenu(){
-        
-        },
-        // created
-        created(){
+    },
+    created(){
             this.newSearch();
         },
-    }
       
   }
 </script>
@@ -82,6 +95,7 @@ import {store} from '../store';
       <Navbar/>
       <!-- barra ricerca laterale -->
       <SearchBar @searchMovie="newSearch"/>
+      <SearchNotFoundAlert></SearchNotFoundAlert>
   </header>
 </template>
 

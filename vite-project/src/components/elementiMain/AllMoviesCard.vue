@@ -42,13 +42,35 @@ import Cards from './Cards.vue';
 
                 // tv series
                     this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
-                    console.log(this.store.pushAllMovies);
+                    console.log(this.store.pushAllTvs);
                 }  
             },
-    },
-    created(){
-      this.showAllMovies();
-    },
+            // rivedere questa serve per la ricerca in base a genere 
+            // movieCategorie(){
+            //   for(let i = 0; i < 1; i++){
+
+            //       this.store.pushAllMovies = [];
+            //       this.store.pushAllTvs = [];
+
+            //       this.store.totalPage += 1;
+
+            //        axios.get( apiUrl + '&page=' + this.store.totalPage + '&with_genres=' + ).then((response)=>{
+            //         typeOfSee = response.data.results;
+            //         console.log('sono tuuutti film e serie');
+            //         console.log(typeOfSee);
+
+            //         typeOfSee.forEach((element)=>{
+            //             allListToSee.push(element);
+            //         });
+            //     });
+            //     }  
+            // },
+
+        },
+        
+        created(){
+          this.showAllMovies();
+        },
 };
 </script>
 

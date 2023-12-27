@@ -27,12 +27,12 @@
                 <!-- se italiano -->
             <p v-if="originalLanguage === 'it'">
                 Lingua Originale : {{originalLanguage }} 
-                <img src="../../assets/img/flag-img/icons8-italy-48.png" alt="ita.img"> 
+                <img src="../../../public/flag-img/icons8-italy-48.png" alt="ita.img"> 
             </p>
             <!-- se inglese -->
             <p v-else-if="originalLanguage === 'en'">
                 Lingua Originale :  {{originalLanguage }} 
-                <img src="../../assets/img/flag-img/icons8-circolare-della-gran-bretagna-48.png" alt="gr.img"> 
+                <img src="../../../public/flag-img/icons8-circolare-della-gran-bretagna-48.png" alt="gr.img"> 
             </p>
                 <!-- se non inglese e non italiano -->
             <p v-else>
