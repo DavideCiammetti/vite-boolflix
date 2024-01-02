@@ -54,7 +54,7 @@ import {store} from '../store';
             // nel caso in cui non si inserisce la ricerca svuota gli array di film e serie 
             // e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
             // una ricerca senzata 
-            if( this.store.search.trim().length === 0 ){
+            if( this.store.search.trim().length === 0){
                 this.store.search = '';
 
                 this.store.allMovies = [];
@@ -75,7 +75,7 @@ import {store} from '../store';
                   this.store.pushAllMovies = [];
                   this.store.pushAllTvs = [];
                   console.log('+ 0');
-                  this.store.searchVal += 1;
+                  this.store.searchVal -= 1;
           
                   return this.store.seeSearchResult = false;
                 }
