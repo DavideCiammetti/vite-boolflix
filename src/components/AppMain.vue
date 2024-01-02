@@ -1,7 +1,6 @@
 <script>
 import AllMoviesCard from './elementiMain/AllMoviesCard.vue';
 import ListMovieTvSeries from './elementiMain/ListMovieTvSeries.vue';
-import Selectcategories from './elementiMain/Selectcategories.vue';
 
   export default{
     name: 'mian',
@@ -9,14 +8,12 @@ import Selectcategories from './elementiMain/Selectcategories.vue';
     components: {
         AllMoviesCard,
         ListMovieTvSeries,
-        Selectcategories,
     },
 };
 </script>
 
 <template>
       <main>
-        <Selectcategories/>
         <!-- ritorna tutti i film e serie tv senza filtri -->
         <AllMoviesCard/>
           <!-- ritorna tutti i film e serie tv filtrati in base alla ricerca -->

@@ -7,13 +7,14 @@ import axios from 'axios';
         data(){
             return{
                 store,
+                cat: [],
             };
         },
         methods:{
             movieCtegories(){
-                axios.get(store.categoriesApi).then((response)=>{
-                store.categories = response.data.genres;
-                console.log( store.categories)
+                axios.get(this.store.categoriesApi).then((response)=>{
+                this.store.categories = response.data.genres;
+                console.log(this.store.categories);
             });
             },
         },
@@ -24,11 +25,11 @@ import axios from 'axios';
 </script>
 
 <template>
-    <div class="categories-container">
+    <div class="categories-container" @click="$emit('movieCategorie')">
         <label for="categorie">categorie</label>
-        <select name="categorie" id="categories">
+        <select name="categorie" id="categories" v-model="this.store.newCat">
             <option value="start">Scegli la categoria</option>
-            <option v-for="categ in store.categories " :value="categ.name" @click="$emit=('movieCategorie')">{{categ.name}}</option>
+            <option v-for="categ in this.store.categories " :value="categ.id">{{categ.name}}</option>
         </select>
     </div>
 </template>

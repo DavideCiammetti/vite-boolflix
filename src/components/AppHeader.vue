@@ -22,7 +22,6 @@ import {store} from '../store';
       methods:{
 
         apiCall(apiUrl, typeOfSee, allListToSee){
-          
             axios.get( apiUrl + this.store.search + '&page=' + this.store.totPage ).then((response)=>{
                 typeOfSee = response.data.results;
                 console.log('sono film e serie');
@@ -53,9 +52,9 @@ import {store} from '../store';
 
             // uso questa candizione per controllare la ricerca e i risultati
             // nel caso in cui non si inserisce la ricerca svuota gli array di film e serie 
-            //  e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
+            // e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
             // una ricerca senzata 
-            if( this.store.search.trim().length === 0){
+            if( this.store.search.trim().length === 0 ){
                 this.store.search = '';
 
                 this.store.allMovies = [];
@@ -77,9 +76,11 @@ import {store} from '../store';
                   this.store.pushAllTvs = [];
                   console.log('+ 0');
                   this.store.searchVal += 1;
-
+          
                   return this.store.seeSearchResult = false;
                 }
+
+          
         },
     },
     created(){

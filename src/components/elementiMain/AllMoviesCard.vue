@@ -1,12 +1,14 @@
 <script>
 import axios from 'axios';
 import { store } from '../../store';
+import Selectcategories from './Selectcategories.vue';
 import Cards from './Cards.vue';
 
   export default{
     name: 'AllMOvies',
         components:{
             Cards,
+            Selectcategories,
         },
 
         data(){
@@ -17,7 +19,7 @@ import Cards from './Cards.vue';
 
         methods:{
             apiCall(apiUrl, typeOfSee, allListToSee){
-            
+              this.store.seeSearchResult = true;
                 axios.get( apiUrl + '&page=' + this.store.totalPage ).then((response)=>{
                     typeOfSee = response.data.results;
                     console.log('sono tuuutti film e serie');
@@ -44,30 +46,39 @@ import Cards from './Cards.vue';
                     this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
                     console.log(this.store.pushAllTvs);
                 }  
+            }, 
+
+              // ricerca in base a genere 
+          categorie(){
+              for(let i = 0; i < 1; i++){
+
+                  this.store.pushAllMovies = [];
+                  this.store.pushAllTvs = [];
+                  this.store.allMovies = [];
+                  this.store.allSeries = [];
+
+                  this.store.categPages += 1;
+
+                    axios.get(this.store.catUrl + '&with_genres=' + this.store.newCat).then((response)=>{
+                    this.store.newCategories= response.data.results;
+                    console.log('sono categ');
+
+                    this.store.newCategories.forEach((element)=>{
+                    this.store.pushAllMovies.push(element);
+                  });
+                });
+
+                axios.get(this.store.catUrl + '&with_genres=' + this.store.newCat).then((response)=>{
+                    this.store.newCategories= response.data.results;
+                    console.log('sono categ');
+
+                    this.store.newCategories.forEach((element)=>{
+                    this.store.allMovies.push(element);
+                  });
+                });
+                }  
             },
-            // rivedere questa serve per la ricerca in base a genere 
-            // movieCategorie(){
-            //   for(let i = 0; i < 1; i++){
-
-            //       this.store.pushAllMovies = [];
-            //       this.store.pushAllTvs = [];
-
-            //       this.store.totalPage += 1;
-
-            //        axios.get( apiUrl + '&page=' + this.store.totalPage + '&with_genres=' + ).then((response)=>{
-            //         typeOfSee = response.data.results;
-            //         console.log('sono tuuutti film e serie');
-            //         console.log(typeOfSee);
-
-            //         typeOfSee.forEach((element)=>{
-            //             allListToSee.push(element);
-            //         });
-            //     });
-            //     }  
-            // },
-
         },
-        
         created(){
           this.showAllMovies();
         },
@@ -75,6 +86,7 @@ import Cards from './Cards.vue';
 </script>
 
 <template>
+    <Selectcategories @movieCategorie="categorie"/>
     <div v-show="store.seeSearchResult" class="movie-container">
       <!-- <h2 class="title">Movies and TV series</h2> -->
         <ul class="list-container">
