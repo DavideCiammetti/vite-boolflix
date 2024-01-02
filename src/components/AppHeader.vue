@@ -49,7 +49,6 @@ import {store} from '../store';
             // tv series
                 this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
             }
-
             // uso questa candizione per controllare la ricerca e i risultati
             // nel caso in cui non si inserisce la ricerca svuota gli array di film e serie 
             // e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
@@ -57,26 +56,25 @@ import {store} from '../store';
             if( this.store.search.trim().length === 0){
                 this.store.search = '';
 
-                this.store.allMovies = [];
-                this.store.allSeries = [];
                 // array di tutti i film e serie tv
                 this.apiCall(store.movieDiscoverUrl, store.takeAllMovies, store.pushAllMovies);
                 this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
                 console.log('= 0');
                 
                 this.store.searchVal += 1;
-                // questo this.store.seeSearchResult si trova in listMovieTvSeries e allMoviesCard
+
                 // per gestire la visualizzazione 
                 return this.store.seeSearchResult = true;
 
-                }else if(this.store.search.trim().length > 0){
+                }else if(this.store.search.trim().length > 0 ){
                   this.store.search = '';
-
-                  this.store.pushAllMovies = [];
-                  this.store.pushAllTvs = [];
                   console.log('+ 0');
                   this.store.searchVal -= 1;
-          
+
+                  if( this.store.searchVal < 0){
+                    this.store.searchVal += 1000;
+                  }
+
                   return this.store.seeSearchResult = false;
                 }
 
