@@ -36,3 +36,11 @@ la struttura che ho usato è la seguente
    1) in primo piano azzeriamo la lungheza degli array 
    2) facciamo 2 chiamate axios, una nel caso in cui ci troviamo nella pagina iniziale dove a popolare la pagina di informazione c'è l'array **pushAllMovies[]** altrimenti uso l'array per la ricerca **allMovies[]**
 
+## Gestione dati 
+
+per la gestione dati ho usato una singola fonte nello store.js, vorrei spiegare l'utilizzo di alcuni oggeti inseriti al sup interno 
+
+1) **seeSearchResult: true,**-----> questo oggetto l'ho utilizzato in ListMovieTvSeries e AllMovieCard usando v-show in entrambe ma in  AllMovieCard ho usato il valore booleano not !seeSearchResult cosi si può visualizzare l'una o l'altra. Per gestire questo di default ho impostato il valore di seeSearchResult a true cosi che quando si apre la pagina verrà subito visualizzato l'elenco di tutti i film e di tutte le serie e poi lascio la gestione alla funzione newSearch() che come ho scritto prima è situata nell'header ed al suo interno in caso di ricerca seeSearchResult viene settato a false cosi che AllMovieCard non viene visuoalizzato e grazie al not operatore !seeSearchResult possiamo visualizzare i riusltati della ricerca proprio come fosse un iterruttore 
+
+2) **searchVal: 0,**----> questo oggetto lo uso per validare una ricerca, nel caso in cui una ricerca non è stata effettuata o nel caso in cui è stato inserito qualche valore non disponibile per la ricerca questo perche nel caso in cui la ricerca non è andata a buon fine incremento questo valore che se diventa maggiore di 2 allore scatta il messaggio di riceraca errata 
+
