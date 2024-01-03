@@ -1,8 +1,6 @@
 import {reactive} from 'vue';
-// import {apiCollection} from './apiCollection';
 
 export const store = reactive({
-    // apiColl: apiCollection,
     //solo film
     film: [],
     allMovies: [],
@@ -25,14 +23,11 @@ export const store = reactive({
     // validatore globale per ricerca film e serie tv
     seeSearchResult: true,
     searchVal: 0,
-    searchNum: 0,
     // categorie film
     categoriesApi: 'https://api.themoviedb.org/3/genre/movie/list?api_key=ce2602a149b34cf456d6b3a97519bed3',
     categories: [],
-    pushCategories: [],
     newCategories:[],
     categPages: 0,
-    newCat: 0,
     catUrl: 'https://api.themoviedb.org/3/discover/movie?api_key=ce2602a149b34cf456d6b3a97519bed3',
    
 });
