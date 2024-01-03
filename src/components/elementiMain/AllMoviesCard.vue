@@ -18,65 +18,65 @@ import Cards from './Cards.vue';
         },
 
         methods:{
-            apiCall(apiUrl, typeOfSee, allListToSee){
-              this.store.seeSearchResult = true;
-                axios.get( apiUrl + '&page=' + this.store.totalPage ).then((response)=>{
-                    typeOfSee = response.data.results;
-                    console.log('sono tuuutti film e serie');
-                    console.log(typeOfSee);
+          apiCall(apiUrl, typeOfSee, allListToSee){
+            this.store.seeSearchResult = true;
+              axios.get( apiUrl + '&page=' + this.store.totalPage ).then((response)=>{
+                  typeOfSee = response.data.results;
+                  console.log('sono tuuutti film e serie');
+                  console.log(typeOfSee);
 
-                    typeOfSee.forEach((element)=>{
-                        allListToSee.push(element);
-                    });
-                });
+                  typeOfSee.forEach((element)=>{
+                      allListToSee.push(element);
+                  });
+              });
 
-            },
+          },
 
-            // funzione chiama api e gestisce film e serie tv 
-            showAllMovies(){
-                for(let i = 0; i < 1; i++){
-                  this.store.pushAllMovies = [];
-                  this.store.pushAllTvs = [];
-                    this.store.totalPage += 1;
-                // movie 
-                    this.apiCall(store.movieDiscoverUrl, store.takeAllMovies, store.pushAllMovies);
-                    console.log(store.pushAllMovies);
+          // funzione chiama api e gestisce film e serie tv 
+          showAllMovies(){
+            for(let i = 0; i < 1; i++){
+              this.store.pushAllMovies = [];
+              this.store.pushAllTvs = [];
+                this.store.totalPage += 1;
+            // movie 
+                this.apiCall(store.movieDiscoverUrl, store.takeAllMovies, store.pushAllMovies);
+                console.log(store.pushAllMovies);
 
-                // tv series
-                    this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
-                    console.log(this.store.pushAllTvs);
-                }  
-            }, 
+            // tv series
+                this.apiCall(store.tvDiscoverUrl, store.takeAllTvs, store.pushAllTvs);
+                console.log(this.store.pushAllTvs);
+            }  
+          }, 
 
               // ricerca in base a genere 
           categorie(){
-              for(let i = 0; i < 1; i++){
+            for(let i = 0; i < 1; i++){
 
-                  this.store.pushAllMovies = [];
-                  this.store.pushAllTvs = [];
-                  this.store.allMovies = [];
-                  this.store.allSeries = [];
+              this.store.pushAllMovies = [];
+              this.store.pushAllTvs = [];
+              this.store.allMovies = [];
+              this.store.allSeries = [];
 
-                  this.store.categPages += 1;
-
-                    axios.get(this.store.catUrl + '&with_genres=' + this.store.newCat).then((response)=>{
-                    this.store.newCategories= response.data.results;
-                    console.log('sono categ');
-
-                    this.store.newCategories.forEach((element)=>{
-                    this.store.pushAllMovies.push(element);
-                  });
-                });
-
+              this.store.categPages += 1;
+              // chiamata in caso siamo sui film della pagina iniziale
                 axios.get(this.store.catUrl + '&with_genres=' + this.store.newCat).then((response)=>{
-                    this.store.newCategories= response.data.results;
-                    console.log('sono categ');
+                this.store.newCategories= response.data.results;
+                console.log('sono categ');
 
-                    this.store.newCategories.forEach((element)=>{
-                    this.store.allMovies.push(element);
-                  });
+                this.store.newCategories.forEach((element)=>{
+                this.store.pushAllMovies.push(element);
                 });
-                }  
+              });
+              // chiamata in caso siamo sui film della ricerca
+              axios.get(this.store.catUrl + '&with_genres=' + this.store.newCat).then((response)=>{
+                  this.store.newCategories= response.data.results;
+                  console.log('sono categ');
+
+                  this.store.newCategories.forEach((element)=>{
+                  this.store.allMovies.push(element);
+                });
+              });
+              }  
             },
         },
         created(){

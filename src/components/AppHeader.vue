@@ -49,10 +49,8 @@ import {store} from '../store';
             // tv series
                 this.apiCall(this.store.seriesApiURL, this.store.tvSeries, this.store.allSeries);
             }
-            // uso questa candizione per controllare la ricerca e i risultati
-            // nel caso in cui non si inserisce la ricerca svuota gli array di film e serie 
-            // e inserisce gli array di tutti i film e serie tv fino a che non si effettua 
-            // una ricerca senzata 
+
+            //candizione per controllare i risultati della ricerca
             if( this.store.search.trim().length === 0){
                 this.store.search = '';
 
@@ -63,12 +61,17 @@ import {store} from '../store';
                 
                 this.store.searchVal += 1;
 
+                  if( this.store.searchVal > 3){
+                    this.store.searchVal -= 1;
+                  }else if(this.store.searchVal < 1){
+                    this.store.searchVal += 2;
+                  }
+
                 // per gestire la visualizzazione 
                 return this.store.seeSearchResult = true;
 
                 }else if(this.store.search.trim().length > 0 ){
                   this.store.search = '';
-                  console.log('+ 0');
                   this.store.searchVal -= 1;
 
                   if( this.store.searchVal < 0){
